@@ -1,0 +1,33 @@
+<h1 class="mt-3">You Tube Videos</h1>
+<hr />
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col" *ngFor="let v of videos">
+    <div class="card animate__animated animate__fadeIn">
+      <img [src]="v.thumbnails.high.url" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{ v.title }}</h5>
+        <p class="card-text"><strong>Autor: </strong>{{ v.channelTitle }}</p>
+        <p class="card-text">
+          <strong>Descripción:</strong>
+          {{ v.description.substring(0, 250) }}
+        </p>
+        <p class="card-text">
+          <strong> Fecha de publicación: </strong>
+          {{ v.publishedAt | date : "dd/MM/yyyy" }}
+        </p>
+        <button class="btn btn-primary" (click)="showVideo(v)">
+          Ver video
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="loaded"
+  class="d-flex justify-content-center align-items-center"
+  style="height: 15vh"
+>
+  <button class="btn btn-danger" (click)="loadMore()">Ver más</button>
+</div>
